@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -33,8 +34,8 @@ public class SignUp {
             numberField.sendKeys("12345678901");
 
         // Selects the input inside div with class
-            WebElement dobInput = driver.findElement(By.cssSelector(".signup_form_dateofbirth input"));
-            dobInput.sendKeys("2000-01-01");
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("document.querySelector('.signup_form_dateofbirth input').value = '2000-01-01'");
 
 
             WebElement genderOption = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("gender")));
@@ -49,7 +50,7 @@ public class SignUp {
             WebElement passwordField = driver.findElement(By.id("password"));
             passwordField.sendKeys("Hasib1234");
 
-            WebElement confrmPass = driver.findElement(By.className("MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1ixds2g"));
+            WebElement confrmPass = driver.findElement(By.cssSelector("input[name='confirmPassword']"));
             confrmPass.sendKeys("Hasib1234");
 
 
